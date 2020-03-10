@@ -57,6 +57,14 @@ fun initShape(shape: RectangularShape?){
     } ?: throw IllegalArgumentException()
 }
 
+fun drawShape(shape: RectangularShape? ){
+    shape?.also {
+        validateShape(it)
+        it.measure()
+        it.render()
+    }
+}
+
 fun numarVocale(mesaj: String):Int{
     val vocale:String="aeiouAEIOU"
     var contor:Int=0;
@@ -169,9 +177,13 @@ fun printName() {
         print(it.name)
 }
 
-val comp = compareBy<Pair<Int, String>>({it.first}, {it.second})
+fun printSortedByGradeName() {
+    students.sortedWith(compareBy({ it.grade }, { it.name })).forEach { print(it) }
+}
 
-
+fun printGroupByAddress() {
+    println(students.groupBy { it.address })
+}
 
 
 
